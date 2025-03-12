@@ -1,56 +1,23 @@
-import type { RegisterOptions, UseFormGetValues } from 'react-hook-form' // Chỉ import các key có type là RegisterOptions
+import * as yup from 'yup'
 
-type Rules = { [key in 'email' | 'password' | 'confirm_password']?: RegisterOptions | any }
-
-export const getRules = (getValues?: UseFormGetValues<any>): Rules => ({
-  email: {
-    required: {
-      value: true,
-      message: 'Vui lòng nhập email'
-    },
-    pattern: {
-      value: /^\S+@\S+\.\S+$/,
-      message: 'Email không đúng định dạng'
-    },
-    minLength: {
-      value: 5,
-      message: 'Email phải có ít nhất 5 ký tự'
-    },
-    maxLength: {
-      value: 160,
-      message: 'Email phải từ 5 - 160 ký tự'
-    }
-  },
-  password: {
-    required: {
-      value: true,
-      message: 'Vui lòng nhập mật khẩu'
-    },
-    minLength: {
-      value: 6,
-      message: 'Mật khẩu phải có ít nhất 6 ký tự'
-    },
-    maxLength: {
-      value: 160,
-      message: 'Mật khẩu phải từ 6 - 160 ký tự'
-    }
-  },
-  confirm_password: {
-    required: {
-      value: true,
-      message: 'Nhập lại password'
-    },
-    minLength: {
-      value: 6,
-      message: 'Mật khẩu phải có ít nhất 6 ký tự'
-    },
-    maxLength: {
-      value: 160,
-      message: 'Mật khẩu phải từ 6 - 160 ký tự'
-    },
-    validate:
-      typeof getValues === 'function'
-        ? (value: any) => value === getValues('password') || 'Mật khẩu không khớp'
-        : undefined
-  }
+export const schema = yup.object({
+  email: yup
+    .string()
+    .required('Email là bắt buộc')
+    .email('Email không đúng định dạng')
+    .min(5, 'Email phải có ít nhất 5 ký tự')
+    .max(160, 'Email phải từ 5 - 160 ký tự'),
+  password: yup
+    .string()
+    .required('Vui lòng nhập mật khẩu')
+    .min(6, 'Mật khẩu phải có ít nhất 6 ký tự')
+    .max(160, 'Mật khẩu phải từ 6 - 160 ký tự'),
+  confirm_password: yup
+    .string()
+    .required('Nhập lại password')
+    .min(6, 'Mật khẩu phải có ít nhất 6 ký tự')
+    .max(160, 'Mật khẩu phải từ 6 - 160 ký tự')
+    .oneOf([yup.ref('password')], 'Mật khẩu không khớp')
 })
+
+export type Schema = yup.InferType<typeof schema>
