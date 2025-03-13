@@ -31,6 +31,7 @@ export default function Register() {
       onSuccess: (data) => {
         console.log(data)
       },
+      // Xử lý lỗi 422 từ server
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ResponseApi<Omit<FormData, 'confirm_password'>>>(error)) {
           // Lấy ra lỗi
