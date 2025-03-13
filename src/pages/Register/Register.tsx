@@ -6,6 +6,8 @@ import { Schema, schema } from '../../utils/rules'
 import { useMutation } from '@tanstack/react-query'
 import { registerAccount } from '../../apis/auth.api'
 import { omit } from 'lodash'
+import { isAxiosUnprocessableEntityError } from '../../utils/utils'
+import { ResponseApi } from '../../types/utils.type'
 
 type FormData = Schema
 
@@ -14,7 +16,7 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    setError
   } = useForm({
     resolver: yupResolver(schema)
   })
@@ -28,12 +30,28 @@ export default function Register() {
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
         console.log(data)
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError<ResponseApi<Omit<FormData, 'confirm_password'>>>(error)) {
+          // Lấy ra lỗi
+          const formError = error.response?.data.data
+          // AxiosError nó trả về cả undefined nữa. Vậy nên cần check là nếu ko phải là undefined thì sẽ thông báo
+          if (formError?.email) {
+            setError('email', {
+              type: 'Server',
+              message: formError.email
+            })
+          }
+          if (formError?.password) {
+            setError('password', {
+              type: 'Server',
+              message: formError.password
+            })
+          }
+        }
       }
     })
   })
-
-  const data = watch()
-  console.log(data)
 
   return (
     <div className='bg-orange'>
