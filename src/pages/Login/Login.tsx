@@ -1,23 +1,26 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Schema, schema } from '../../utils/rules'
 import { useMutation } from '@tanstack/react-query'
 import { loginAccount } from '../../apis/auth.api'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
-import { ResponseApi } from '../../types/utils.type'
+import { ErrorResponse } from '../../types/utils.type'
 import Input from '../../components/Input'
+import { useContext } from 'react'
+import { AppContext } from '../../contexts/app.context'
 
 type FormData = Omit<Schema, 'confirm_password'>
 const loginSchema = schema.omit(['confirm_password'])
 
 export default function Login() {
+  const { setIsAuthenticated } = useContext(AppContext)
+  const navigate = useNavigate() // Sử dụng hook useNavigate để khi login thành công sẽ chuyển trang
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
-    watch
+    formState: { errors }
   } = useForm({
     resolver: yupResolver(loginSchema)
   })
@@ -26,17 +29,15 @@ export default function Login() {
     mutationFn: (body: FormData) => loginAccount(body)
   })
 
-  const value = watch()
-  console.log(value)
-
   const onSubmit = handleSubmit((data) => {
     loginAccountMutation.mutate(data, {
-      onSuccess: (data) => {
-        console.log(data)
+      onSuccess: () => {
+        setIsAuthenticated(true)
+        navigate('/')
       },
       // Xử lý lỗi 422 từ server
       onError: (error) => {
-        if (isAxiosUnprocessableEntityError<ResponseApi<FormData>>(error)) {
+        if (isAxiosUnprocessableEntityError<ErrorResponse<FormData>>(error)) {
           // Lấy ra lỗi
           const formError = error.response?.data.data
           // AxiosError nó trả về cả undefined nữa. Vậy nên cần check là nếu ko phải là undefined thì sẽ thông báo

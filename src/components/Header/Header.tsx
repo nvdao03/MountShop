@@ -1,7 +1,26 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Popover from '../Popover'
+import { useMutation } from '@tanstack/react-query'
+import { logoutAccount } from '../../apis/auth.api'
+import { useContext } from 'react'
+import { AppContext } from '../../contexts/app.context'
 
 export default function Header() {
+  const { setIsAuthenticated, isAuthenticated } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const logoutMutation = useMutation({
+    mutationFn: () => logoutAccount(),
+    onSuccess: () => {
+      setIsAuthenticated(false)
+      navigate('/')
+    }
+  })
+
+  const handleLogoutMutation = () => {
+    logoutMutation.mutate()
+  }
+
   return (
     <header className='pb-5 pt-2 bg-[linear-gradient(-180deg,#f53d2d,#f63)]'>
       <div className='container'>
@@ -42,36 +61,53 @@ export default function Header() {
               <path strokeLinecap='round' strokeLinejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' />
             </svg>
           </Popover>
-          {/* User */}
-          <Popover
-            className='flex items-center py-1 hover:text-gray-200 cursor-pointer text-white'
-            renderPopover={
-              <div className='flex flex-col py-2 px-3 text-gray-800'>
-                <Link to='/profile' className='px-3 py-2 hover:text-orange text-left'>
-                  Tài khoản của tôi
+
+          {!isAuthenticated && (
+            <>
+              <div className='flex items-center gap-x-3 ml-5'>
+                <Link to='./register' className='text-sm text-white'>
+                  Đăng Ký
                 </Link>
-                <Link to='/cart' className='px-3 py-2 hover:text-orange text-left'>
-                  Đơn mua
-                </Link>
-                <Link to='/login' className='px-3 py-2 hover:text-orange text-left'>
-                  Đăng xuất
+                <Link to='./login' className='text-sm text-white'>
+                  Đăng nhập
                 </Link>
               </div>
-            }
-          >
-            <div className='ml-7 flex items-center justify-end py-1 hover:text-gray-200 cursor-pointer text-white'>
-              <div className='w-6 h-6 mr-2 flex-shrink-0 flex items-center'>
-                <img
-                  src='https://lh3.googleusercontent.com/ogw/AF2bZyiy5KaKqaiVxy2VniCkyMbnJuGDBrPKHrk5xPJKNq-vRaE=s32-c-mo'
-                  alt='Văn Đạo'
-                  className='rounded-[50%] w-full h-full object-cover'
-                />
-              </div>
-              <div>
-                <span className='block'>Văn Đạo</span>
-              </div>
-            </div>
-          </Popover>
+            </>
+          )}
+          {isAuthenticated && (
+            <>
+              {/* User */}
+              <Popover
+                className='flex items-center py-1 hover:text-gray-200 cursor-pointer text-white'
+                renderPopover={
+                  <div className='flex flex-col py-2 px-3 text-gray-800'>
+                    <Link to='/profile' className='px-3 py-2 hover:text-orange text-left'>
+                      Tài khoản của tôi
+                    </Link>
+                    <Link to='/cart' className='px-3 py-2 hover:text-orange text-left'>
+                      Đơn mua
+                    </Link>
+                    <button onClick={handleLogoutMutation} className='px-3 py-2 hover:text-orange text-left'>
+                      Đăng xuất
+                    </button>
+                  </div>
+                }
+              >
+                <div className='ml-7 flex items-center justify-end py-1 hover:text-gray-200 cursor-pointer text-white'>
+                  <div className='w-6 h-6 mr-2 flex-shrink-0 flex items-center'>
+                    <img
+                      src='https://lh3.googleusercontent.com/ogw/AF2bZyiy5KaKqaiVxy2VniCkyMbnJuGDBrPKHrk5xPJKNq-vRaE=s32-c-mo'
+                      alt='Văn Đạo'
+                      className='rounded-[50%] w-full h-full object-cover'
+                    />
+                  </div>
+                  <div>
+                    <span className='block'>Văn Đạo</span>
+                  </div>
+                </div>
+              </Popover>
+            </>
+          )}
         </div>
         {/* Search */}
         <div className='grid grid-cols-12 gap-4 mt-4 items-end'>

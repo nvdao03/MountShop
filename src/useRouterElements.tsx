@@ -5,16 +5,19 @@ import Register from './pages/Register'
 import RegisterLayout from './layouts/RegisterLayout'
 import MainLayout from './layouts/MainLayout'
 import Profile from './pages/Profile'
+import { useContext } from 'react'
+import { AppContext } from './contexts/app.context'
 
 // Nếu người dùng login thành công thì cho người dùng thao tác tiếp còn ko thì ở nguyên trang login
-const isAuthenticated = true
 function ProtectedRoute() {
+  const { isAuthenticated } = useContext(AppContext)
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
 }
 
 // Khi người dùng login rồi thì ko cần cho người dùng vào trang login nữa, nếu người dùng cố vào trang register sẽ cho nó chuyển đến trang home
 // Nếu người dùng login rồi thì cho vào -> còn ko thì cho vào trang list sản phẩm
 function RejectedRoute() {
+  const { isAuthenticated } = useContext(AppContext)
   return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
 }
 

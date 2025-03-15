@@ -1,9 +1,9 @@
-import { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 import { getAccessTokenFromLS } from '../utils/auth'
 
 interface AppContextInterface {
   isAuthenticated: boolean
-  setIsAuthenticated: () => void
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const initialAppContext: AppContextInterface = {
@@ -13,4 +13,19 @@ const initialAppContext: AppContextInterface = {
 }
 
 // createContext() phải truyền giá trị khởi tạo, nếu ko truyên giá trị khởi tạo nó sẽ lấy giá trị khởi tạo là prop value
-export const AppContext = createContext(initialAppContext)
+export const AppContext = createContext<AppContextInterface>(initialAppContext)
+
+export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAppContext.isAuthenticated)
+
+  return (
+    <AppContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  )
+}
