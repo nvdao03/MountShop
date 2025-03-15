@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import Popover from '../Popover'
-import { div } from 'framer-motion/client'
 
 export default function Header() {
   return (
@@ -74,6 +73,7 @@ export default function Header() {
             </div>
           </Popover>
         </div>
+        {/* Search */}
         <div className='grid grid-cols-12 gap-4 mt-4 items-end'>
           <Link to='/' className='col-span-2 flex-shrink-0'>
             <svg viewBox='0 0 192 65' className='h-11 fill-white'>
@@ -108,6 +108,7 @@ export default function Header() {
               </button>
             </div>
           </form>
+          {/* Cart */}
           <div className='col-span-1 text-black ml-4'>
             <Popover
               className='ml-4'
