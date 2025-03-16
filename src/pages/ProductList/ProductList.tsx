@@ -1,5 +1,5 @@
 import AsideFilter from './components/AsideFilter'
-import Product from './components/Product'
+import ProductItem from './components/ProductItem/Product'
 import SortProductList from './components/SortProductList'
 
 export default function ProductList() {
@@ -17,7 +17,7 @@ export default function ProductList() {
                 .fill(0)
                 .map((_, index) => (
                   <div className='col-span-1' key={index}>
-                    <Product />
+                    <ProductItem />
                   </div>
                 ))}
             </div>

@@ -4,7 +4,7 @@ export default function SortProductList() {
       <div className='flex flex-wrap items-start justify-between gap-2'>
         {/* Item left */}
         <div className='flex items-center flex-wrap gap-2'>
-          <span className='block mr-1'>Sắp xếp theo</span>
+          <span className='block mr-1 text-[15px]'>Sắp xếp theo</span>
           <button className='h-8 px-4 capitalize bg-orange text-white text-sm hover:bg-orange/80 text-center'>
             Phổ biến
           </button>

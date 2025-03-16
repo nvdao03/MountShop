@@ -34,12 +34,12 @@ export default function AsideFilter() {
             Thời trang nam
           </Link>
         </li>
-        <li className='py-2 pl-2'>
+        <li className='py-2 pl-2 text-[15px]'>
           <Link to={path.home} className='relative px-2'>
             Áo khoác
           </Link>
         </li>
-        <li className='py-2 pl-2'>
+        <li className='py-2 pl-2 text-[15px]'>
           <Link to={path.home} className='relative px-2'>
             Áo Vest và Blazer
           </Link>
@@ -68,7 +68,7 @@ export default function AsideFilter() {
       {/* Row 3 */}
       <div className='bg-gray-300 h-[1px] my-4'></div>
       <div className='my-5'>
-        <div>Khoảng giá</div>
+        <p className='text-[15px]'>Khoảng giá</p>
         <form className='mt-2'>
           <div className='flex items-start'>
             <Input
@@ -94,7 +94,7 @@ export default function AsideFilter() {
       </div>
       {/* Row 4 */}
       <div className='bg-gray-300 h-[1px] my-4'></div>
-      <p>Đánh giá</p>
+      <p className='text-[15px]'>Đánh giá</p>
       <ul className='my-3'>
         <li className='py-1 pl-2'>
           <Link to='' className='flex items-center text-sm'>
