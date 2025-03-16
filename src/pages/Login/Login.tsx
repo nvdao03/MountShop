@@ -9,6 +9,8 @@ import { ErrorResponse } from '../../types/utils.type'
 import Input from '../../components/Input'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
+import Button from '../../components/Button'
+import path from '../../constants/path'
 
 type FormData = Omit<Schema, 'confirm_password'>
 const loginSchema = schema.omit(['confirm_password'])
@@ -82,16 +84,18 @@ export default function Login() {
                 register={register}
               />
               <div className='mt-2'>
-                <button
+                <Button
+                  disabled={loginAccountMutation.isLoading}
+                  isLoading={loginAccountMutation.isLoading}
                   type='submit'
-                  className='w-full text-center py-4 px-2 uppercase bg-red-500 text-white text-sm hover:bg-red-600'
+                  className='w-full text-center py-4 px-2 uppercase bg-red-500 text-white text-sm hover:bg-red-600 flex justify-center gap-x-2 items-start'
                 >
                   Đăng nhập
-                </button>
+                </Button>
               </div>
               <div className='mt-8 text-center flex items-center gap-x-2 justify-center'>
                 <span className='text-slate-400'>Bạn chưa có tài khoản hay chưa?</span>
-                <Link to='/register' className='text-red-500'>
+                <Link to={path.register} className='text-red-500'>
                   Đăng ký
                 </Link>
               </div>
