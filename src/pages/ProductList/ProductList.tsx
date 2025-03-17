@@ -15,7 +15,7 @@ export default function ProductList() {
     }
   })
 
-  console.log(queryParams)
+  console.log(productListQuery.data)
 
   return (
     <section className='bg-gray-200 py-6'>
@@ -27,11 +27,10 @@ export default function ProductList() {
           <div className='col-span-10'>
             <SortProductList />
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mt-6'>
-              {Array(30)
-                .fill(0)
-                .map((_, index) => (
-                  <div className='col-span-1' key={index}>
-                    <ProductItem />
+              {productListQuery.data &&
+                productListQuery.data.data.data.products.map((product) => (
+                  <div className='col-span-1' key={product._id}>
+                    <ProductItem product={product} />
                   </div>
                 ))}
             </div>

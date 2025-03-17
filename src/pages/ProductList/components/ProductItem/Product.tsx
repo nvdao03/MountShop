@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom'
+import { Product as ProductType } from '../../../../types/product.type'
+import { fomatNumberToSocialStyle, formatCurrency } from '../../../../types/utils.type'
 
-export default function ProductItem() {
+interface ProductPropType {
+  product: ProductType
+}
+
+export default function ProductItem({ product }: ProductPropType) {
   return (
     <Link to='/'>
       <div className='bg-white overflow-hidden shadow rounded-md hover:translate-y-[0.05rem] hover:shadow-md duration-300 transition-transform'>
         {/* image */}
         <div className='w-full relative pt-[100%]'>
           <img
-            src='https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m6yvj5h9sp7l8d_tn.webp'
-            alt=''
+            src={product.images[1]}
+            alt={product.name}
             className='absolute top-0 left-0 bg-white w-full h-full object-cover'
           />
         </div>
@@ -22,11 +28,11 @@ export default function ProductItem() {
           <div className='flex items-center mt-3'>
             <div className='line-through text-xs max-w-[50%] text-gray-500 truncate'>
               <span>₫</span>
-              <span>5.000</span>
+              <span>{formatCurrency(product.price_before_discount)}</span>
             </div>
             <div className='text-orange truncate ml-1'>
               <span className='text-xs'>₫</span>
-              <span>2.000</span>
+              <span>{formatCurrency(product.price)}</span>
             </div>
           </div>
           {/* quantity */}
@@ -57,11 +63,11 @@ export default function ProductItem() {
                   </g>
                 </g>
               </svg>
-              <span>4.5</span>
+              <span>{product.rating}</span>
             </div>
             <div className='flex items-center gap-x-1'>
               <span>Đã bán</span>
-              <span>8,3K</span>
+              <span>{fomatNumberToSocialStyle(product.sold)}</span>
             </div>
           </div>
           {/* location */}
