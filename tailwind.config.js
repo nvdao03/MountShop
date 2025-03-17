@@ -10,6 +10,7 @@ export default {
     extend: {
       colors: {
         orange: '#ee4d2d',
+        primary: '#4F46E5',
         'text-footer': '#0000008a'
       }
     }

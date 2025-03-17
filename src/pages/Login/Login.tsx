@@ -64,7 +64,7 @@ export default function Login() {
   return (
     <div>
       <div className='container'>
-        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-31 py-12 lg:pr-10 items-center'>
+        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-31 py-12 lg:pr-10 items-center h-[100vh]'>
           {/* Item 1 */}
           <div className='hidden lg:block lg:grid-start-1 lg:col-span-3'>
             <AnimateLogin className='max-w-[550px]' />
