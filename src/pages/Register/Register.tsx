@@ -12,6 +12,8 @@ import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
 import Button from '../../components/Button'
 import path from '../../constants/path'
+import AnimateRegister from './components'
+import { toast } from 'react-toastify'
 
 type FormData = Schema
 
@@ -62,19 +64,23 @@ export default function Register() {
   })
 
   return (
-    <div className='bg-orange'>
+    <div>
       <div className='container'>
-        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-32 py-12 lg:pr-10'>
+        <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-31 py-12 lg:pr-10 items-center'>
           {/* Item 1 */}
-          <div className='lg:col-span-2 lg:col-start-4'>
-            <form className='p-10 rounded bg-white shadow-sm' onSubmit={onSubmit} noValidate>
-              <div className='text-2xl'>Đăng ký</div>
+          <div className='hidden lg:block lg:grid-start-1 lg:col-span-3'>
+            <AnimateRegister className='max-w-[500px]' />
+          </div>
+          {/* Item 2 */}
+          <div className='lg:col-span-2 lg:col-start-4 border border-solid rounded-lg border-[#EAEAEA] overflow-hidden'>
+            <form className='p-8 bg-white shadow-sm rounded-lg' onSubmit={onSubmit} noValidate>
+              <p className='text-2xl text-[#4F46E5] font-semibold text-center'>Đăng ký tài khoản mới</p>
               <Input
                 className='mt-8'
                 name='email'
                 register={register}
                 type='email'
-                placeholder='Email'
+                placeholder='Email khách hàng'
                 errorMessage={errors.email?.message}
               />
               <Input
@@ -82,29 +88,40 @@ export default function Register() {
                 name='password'
                 register={register}
                 type='password'
-                placeholder='Password'
+                placeholder='Mật khẩu'
                 errorMessage={errors.password?.message}
               />
               <Input
+                className='mt-2'
                 name='confirm_password'
                 register={register}
                 type='password'
-                placeholder='Confirm Password'
-                className='mt-2'
+                placeholder='Xác nhận mật khẩu'
                 errorMessage={errors.confirm_password?.message}
               />
-              <div className='mt-2'>
+              <div className='flex items-center justify-between mt-2 text-[15px]'>
+                <div className='flex items-center gap-x-2'>
+                  <input type='checkbox' id='check' />
+                  <label htmlFor='check' className='select-none'>
+                    Tôi đồng ý với các điều khoản
+                  </label>
+                </div>
+                <Link to='#!' className='text-[#4F46E5] cursor-pointer hidden lg:block'>
+                  Xem điều khoản
+                </Link>
+              </div>
+              <div className='mt-5'>
                 <Button
                   isLoading={registerAccountMutation.isLoading}
                   disabled={registerAccountMutation.isLoading}
-                  className='w-full text-center py-4 px-2 uppercase bg-red-500 text-white text-sm hover:bg-red-600 flex items-center justify-center gap-x-2'
+                  className='w-full text-center py-3 px-5 uppercase border border-solid rounded-[8px] bg-[#4F46E5] text-white text-sm flex items-center justify-center gap-x-2'
                 >
                   Đăng ký
                 </Button>
               </div>
-              <div className='mt-8 text-center flex items-center gap-x-2 justify-center'>
-                <span className='text-slate-400'>Bạn đã có tài khoản hay chưa?</span>
-                <Link to={path.login} className='text-red-500'>
+              <div className='mt-8 flex  items-center gap-x-2 justify-between lg:justify-center text-[14px]'>
+                <span className='text-gray-600'>Bạn đã có tài khoản hay chưa?</span>
+                <Link to={path.login} className='text-[#4F46E5]'>
                   Đăng nhập
                 </Link>
               </div>
