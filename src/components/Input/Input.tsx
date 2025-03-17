@@ -16,7 +16,7 @@ export default function Input({
   name,
   register,
   classNameError = 'mt-1 text-red-600 min-h-[1.25rem] text-sm',
-  classNameInput = 'p-3 outline-none w-full border border-solid border-[#B3B3B3] rounded-[8px] focus:border-[#4F46E5] rounded-sm focus:shadow-sm'
+  classNameInput = 'p-3 outline-none w-full border border-solid border-[#B3B3B3] rounded-[8px] focus:border-[#4F46E5] focus:shadow-sm'
 }: PropsType) {
   const registerResult = register && name ? register(name) : {}
   return (

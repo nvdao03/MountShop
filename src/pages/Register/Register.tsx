@@ -13,7 +13,6 @@ import { AppContext } from '../../contexts/app.context'
 import Button from '../../components/Button'
 import path from '../../constants/path'
 import AnimateRegister from './components'
-import { toast } from 'react-toastify'
 
 type FormData = Schema
 
@@ -106,7 +105,7 @@ export default function Register() {
                     Tôi đồng ý với các điều khoản
                   </label>
                 </div>
-                <Link to='#!' className='text-[#4F46E5] cursor-pointer hidden lg:block'>
+                <Link to='#!' className='text-[#4F46E5] cursor-pointer hidden sm:block'>
                   Xem điều khoản
                 </Link>
               </div>
@@ -119,7 +118,7 @@ export default function Register() {
                   Đăng ký
                 </Button>
               </div>
-              <div className='mt-8 flex  items-center gap-x-2 justify-between lg:justify-center text-[14px]'>
+              <div className='mt-8 flex  items-center gap-x-2 justify-between lg:justify-center text-[15px]'>
                 <span className='text-gray-600'>Bạn đã có tài khoản hay chưa?</span>
                 <Link to={path.login} className='text-[#4F46E5]'>
                   Đăng nhập
