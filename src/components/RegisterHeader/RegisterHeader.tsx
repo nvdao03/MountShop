@@ -15,7 +15,7 @@ export default function RegisterHeader() {
             </Link>
             <div className='text-xl ml-5'>{isRegister ? 'Đăng ký' : 'Đăng nhập'}</div>
           </div>
-          <Link to='#!' className='text-[16px] text-primary hover:underline'>
+          <Link to='#!' className='text-[16px] hidden sm:block text-primary hover:underline'>
             Bạn cần giúp đỡ
           </Link>
         </nav>
