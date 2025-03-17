@@ -16,7 +16,7 @@ export default function SortProductList() {
           </button>
           <div className='relative'>
             <select
-              value=''
+              defaultValue=''
               className='outline-none appearance-none h-8 pl-4 pr-12 hover:bg-slate-100 capitalize bg-white text-black text-sm text-left'
             >
               <option value='' disabled>
