@@ -30,6 +30,7 @@
     "react-router-dom": "^6.30.0",
     "react-toastify": "^11.0.5",
     "shopeeclone": "file:",
+    "swiper": "^11.2.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {

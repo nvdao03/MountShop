@@ -38,13 +38,13 @@ export default function Header() {
   }
 
   return (
-    <header className='py-5 bg-white'>
+    <header className='py-5 bg-white fixed top-0 w-full right-0 z-50 border-b border-solid border-gray-300'>
       <div className='container'>
         <div className='flex items-center'>
           {/* Logo */}
-          <div>
+          <Link to={path.home}>
             <img src={Logo} />
-          </div>
+          </Link>
 
           {/* Category */}
           <div className='ml-8 group relative hidden md:block'>

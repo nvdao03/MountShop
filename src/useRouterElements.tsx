@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import { useContext } from 'react'
 import { AppContext } from './contexts/app.context'
 import path from './constants/path'
+import Home from './pages/Home'
 
 // Nếu người dùng login thành công thì cho người dùng thao tác tiếp còn ko thì ở nguyên trang login
 function ProtectedRoute() {
@@ -29,7 +30,7 @@ export default function useRouterElements() {
       path: '/',
       element: (
         <MainLayout>
-          <ProductList />
+          <Home />
         </MainLayout>
       )
     },

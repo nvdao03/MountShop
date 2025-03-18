@@ -18,7 +18,7 @@ export default function ProductList() {
   console.log(productListQuery.data)
 
   return (
-    <section className='bg-gray-200 py-6'>
+    <section className='bg-gray-200 py-6 mt-[88px]'>
       <div className='container'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-2'>
