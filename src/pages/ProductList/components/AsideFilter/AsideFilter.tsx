@@ -27,8 +27,8 @@ export default function AsideFilter() {
       <div className='bg-gray-300 h-[1px] my-4'></div>
       <ul>
         <li className='py-2 pl-2'>
-          <Link to={path.home} className='relative px-2 text-orange font-semibold'>
-            <svg viewBox='0 0 4 7' className='fill-orange h-2 w-2 absolute top-1 left-[-10px]'>
+          <Link to={path.home} className='relative px-2 text-primary font-semibold'>
+            <svg viewBox='0 0 4 7' className='fill-primary h-2 w-2 absolute top-1 left-[-10px]'>
               <polygon points='4 3.5 0 0 0 7' />
             </svg>
             Thời trang nam
@@ -87,7 +87,7 @@ export default function AsideFilter() {
               classNameInput='text-sm p-1 outline-none w-full border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
             />
           </div>
-          <Button className='w-full p-3 uppercase bg-orange text-white text-sm hover:bg-orange flex justify-center items-center'>
+          <Button className='w-full p-3 uppercase bg-primary rounded-md text-white text-sm hover:opacity-90 flex justify-center items-center'>
             Áp dụng
           </Button>
         </form>
@@ -167,7 +167,7 @@ export default function AsideFilter() {
       </ul>
       {/* Row 5 */}
       <div className='bg-gray-300 h-[1px] my-4'></div>
-      <Button className='w-full p-3 uppercase bg-orange text-white text-sm hover:bg-orange flex justify-center items-center'>
+      <Button className='w-full p-3 uppercase bg-primary rounded-md text-white text-sm hover:opacity-90 flex justify-center items-center'>
         XOÁ TẤT CẢ
       </Button>
     </div>
