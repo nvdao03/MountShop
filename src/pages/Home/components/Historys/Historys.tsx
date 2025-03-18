@@ -28,7 +28,7 @@ export default function Historys() {
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(20, 25).map((product) => (
-                  <Link to='#!'>
+                  <Link to='#!' key={product._id}>
                     <ProductItem key={product._id} product={product} />
                   </Link>
                 ))}
@@ -36,7 +36,7 @@ export default function Historys() {
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(10, 15).map((product) => (
-                  <Link to='#!'>
+                  <Link to='#!' key={product._id}>
                     <ProductItem key={product._id} product={product} />
                   </Link>
                 ))}

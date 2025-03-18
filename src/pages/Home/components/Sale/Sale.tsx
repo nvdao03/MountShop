@@ -218,32 +218,32 @@ export default function Sale() {
               )}
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(0, 5).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
+                  <Link to='#!' key={product._id}>
+                    <ProductItem product={product} />
                   </Link>
                 ))}
             </SwiperSlide>
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(5, 10).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
+                  <Link to='#!' key={product._id}>
+                    <ProductItem product={product} />
                   </Link>
                 ))}
             </SwiperSlide>
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(10, 15).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
+                  <Link to='#!' key={product._id}>
+                    <ProductItem product={product} />
                   </Link>
                 ))}
             </SwiperSlide>
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(15, 20).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
+                  <Link to='#!' key={product._id}>
+                    <ProductItem product={product} />
                   </Link>
                 ))}
             </SwiperSlide>

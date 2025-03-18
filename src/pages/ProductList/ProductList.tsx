@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import AsideFilter from './components/AsideFilter'
-import ProductItem from './components/ProductItem/Product'
 import SortProductList from './components/SortProductList'
 import useQueryParam from '../../hooks/useQueryParam'
 import productApi from '../../apis/product.api'
+import ProductItem from './components/ProductItem/Product'
 
 export default function ProductList() {
   const queryParams = useQueryParam()
@@ -14,8 +14,6 @@ export default function ProductList() {
       return productApi.getProducts(queryParams)
     }
   })
-
-  console.log(productListQuery.data)
 
   return (
     <section className='py-6 mt-[88px]'>
