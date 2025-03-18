@@ -26,7 +26,7 @@ export default function ProductList() {
           </div>
           <div className='col-span-10'>
             <SortProductList />
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mt-6'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 mt-6'>
               {productListQuery.data &&
                 productListQuery.data.data.data.products.map((product) => (
                   <div className='col-span-1' key={product._id}>

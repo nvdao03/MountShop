@@ -21,9 +21,7 @@ export default function ProductItem({ product }: ProductPropType) {
         {/* Content */}
         <div className='p-2 overflow-hidden'>
           {/* title */}
-          <h4 className='min-h-[2rem] line-clamp-2 text-xs'>
-            Thắt lưng nam da cao cấp khóa hợp kim tự động sang trọng lịch lãm - Nịt da bảo hành 12 tháng
-          </h4>
+          <h4 className='min-h-[2rem] line-clamp-2 text-[14px]'>{product.name}</h4>
           {/* Price */}
           <div className='flex items-center mt-3'>
             <div className='line-through text-xs max-w-[50%] text-gray-500 truncate'>

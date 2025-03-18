@@ -34,6 +34,14 @@ export default function useRouterElements() {
       )
     },
     {
+      path: path.productlist,
+      element: (
+        <MainLayout>
+          <ProductList />
+        </MainLayout>
+      )
+    },
+    {
       path: '/',
       element: <ProtectedRoute />,
       children: [
