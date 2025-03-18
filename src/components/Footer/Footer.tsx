@@ -17,7 +17,7 @@ import Zalo from '../../assets/imgs/follow-my/zalo.svg'
 
 function Footer() {
   return (
-    <div className='pt-7 pb-10 md:pt-12 bg-neutral-100 text-text-footer'>
+    <div className='mt-6 pt-7 pb-10 md:pt-12 bg-neutral-100 text-text-footer'>
       <div className='container'>
         <div className='grid md:gap-x-10 md:gap-y-8 gap-8 lg:grid-cols-12 lg:gap-8 md:grid-cols-3 border-b border-solid boder-[#ccc] pb-5'>
           {/* Col 1 */}
