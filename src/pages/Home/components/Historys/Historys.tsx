@@ -13,7 +13,7 @@ export default function Historys() {
   })
 
   return (
-    <div className='mt-14'>
+    <div className='mt-14 mb-8'>
       <div className='container relative'>
         <h2 className='text-[20px] font-semibold'>Lịch sử xem</h2>
         <div className='mt-7'>

@@ -62,7 +62,7 @@ export default function Login() {
   })
 
   return (
-    <div>
+    <div className='mb-8'>
       <div className='container'>
         <div className='grid grid-cols-1 lg:grid-cols-5 lg:py-31 py-12 lg:pr-10 items-center h-[100vh]'>
           {/* Item 1 */}

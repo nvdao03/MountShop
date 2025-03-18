@@ -22,13 +22,14 @@ import Dongho from '../../assets/imgs/category/dongho.png'
 import Thoitrang from '../../assets/imgs/category/quan.png'
 
 export default function Header() {
-  const { setIsAuthenticated, isAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, isAuthenticated, setUserName } = useContext(AppContext)
   const navigate = useNavigate()
 
   const logoutMutation = useMutation({
     mutationFn: () => authApi.logoutAccount(),
     onSuccess: () => {
       setIsAuthenticated(false)
+      setUserName('')
       navigate('/')
     }
   })
@@ -115,7 +116,7 @@ export default function Header() {
                     Tài khoản của tôi
                   </Link>
                   <Link to={path.cart} className='text-sm px-3 py-2 hover:underline'>
-                    Đơn mua
+                    Đơn hàng
                   </Link>
                   <Link to={path.home} onClick={handleLogoutMutation} className='text-sm px-3 py-2 hover:underline'>
                     Đăng xuất

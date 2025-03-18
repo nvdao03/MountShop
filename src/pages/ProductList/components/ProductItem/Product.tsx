@@ -9,7 +9,7 @@ interface ProductPropType {
 export default function ProductItem({ product }: ProductPropType) {
   return (
     <Link to='/' className='h-full'>
-      <div className='bg-white h-full flex flex-col h-full overflow-hidden shadow rounded-md hover:translate-y-[0.05rem] hover:shadow-md duration-300 transition-transform'>
+      <div className='bg-white h-full flex flex-col overflow-hidden shadow rounded-md hover:translate-y-[0.05rem] hover:shadow-md duration-300 transition-transform'>
         {/* image */}
         <div className='w-full relative pt-[100%]'>
           <img

@@ -4,13 +4,15 @@ import { toast } from 'react-toastify'
 import { AuthResponse } from '../types/auth.type'
 import { clearLS, getAccessTokenFromLS, saveAccessTokenToLS } from './auth'
 import path from '../constants/path'
-
+import { clearUserNameLS, getUserNameFromLS, saveUserNameToLS } from './user'
 class Http {
   instance: AxiosInstance
   private accessToken: string
+  private userName: string
 
   constructor() {
     this.accessToken = getAccessTokenFromLS()
+    this.userName = getUserNameFromLS()
     this.instance = axios.create({
       baseURL: 'https://api-ecom.duthanhduoc.com',
       timeout: 10000,
@@ -36,10 +38,14 @@ class Http {
         const { url } = response.config
         if (url === path.login || url === path.register) {
           this.accessToken = (response.data as AuthResponse).data?.access_token
+          this.userName = (response.data as AuthResponse).data.user.email
           saveAccessTokenToLS(this.accessToken)
+          saveUserNameToLS(this.userName)
         } else if (url === path.logout) {
           this.accessToken = ''
+          this.userName = ''
           clearLS()
+          clearUserNameLS()
         }
         return response
       },
