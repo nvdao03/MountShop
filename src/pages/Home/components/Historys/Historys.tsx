@@ -1,42 +1,33 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Navigation } from 'swiper/modules'
 import 'swiper/swiper-bundle.css'
 import productApi from '../../../../apis/product.api'
+import { useQuery } from '@tanstack/react-query'
 import ProductItem from '../../../ProductList/components/ProductItem/Product'
 
-export default function Sale() {
+export default function Historys() {
   const getProducts = useQuery({
     queryKey: ['products'],
     queryFn: () => productApi.getProducts()
   })
 
   return (
-    <div className='bg-[#D5D2F9] py-10 mt-8'>
+    <div className='mt-14'>
       <div className='container relative'>
-        <h2 className='text-[#4F46E5] text-[20px] font-semibold'>Deal chớp nhoáng</h2>
+        <h2 className='text-[20px] font-semibold'>Lịch sử xem</h2>
         <div className='mt-7'>
           <Swiper
-            modules={[Pagination, Navigation, Autoplay]}
+            modules={[Pagination, Navigation]}
             slidesPerView={1}
             spaceBetween={30}
             pagination={{ clickable: true }}
             loop={true}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
             navigation={{ nextEl: '.button-next', prevEl: '.button-prev' }}
           >
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
-                getProducts.data.data.data.products.slice(0, 5).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
-                  </Link>
-                ))}
-            </SwiperSlide>
-            <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
-              {getProducts.data &&
-                getProducts.data.data.data.products.slice(5, 10).map((product) => (
+                getProducts.data.data.data.products.slice(20, 25).map((product) => (
                   <Link to='#!'>
                     <ProductItem key={product._id} product={product} />
                   </Link>
@@ -45,14 +36,6 @@ export default function Sale() {
             <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
               {getProducts.data &&
                 getProducts.data.data.data.products.slice(10, 15).map((product) => (
-                  <Link to='#!'>
-                    <ProductItem key={product._id} product={product} />
-                  </Link>
-                ))}
-            </SwiperSlide>
-            <SwiperSlide className='pb-10 !grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5'>
-              {getProducts.data &&
-                getProducts.data.data.data.products.slice(15, 20).map((product) => (
                   <Link to='#!'>
                     <ProductItem key={product._id} product={product} />
                   </Link>

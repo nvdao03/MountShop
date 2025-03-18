@@ -14,7 +14,7 @@ import Nhasach from '../../../../assets/imgs/category-home/nhasach.png'
 export default function Categories() {
   return (
     <div className='mt-10 container'>
-      <h2 className='font-semibold text-[18px]'>Danh mục nổi bật</h2>
+      <h2 className='font-semibold text-[20px]'>Danh mục nổi bật</h2>
       <div className='mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
         {[
           { name: 'TV', icon: TV },
