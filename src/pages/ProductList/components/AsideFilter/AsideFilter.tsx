@@ -58,7 +58,7 @@ export default function AsideFilter(props: CaregoryTypeProps) {
                     category: categoryItem._id
                   }).toString()
                 }}
-                className={classNames('relative px-2 font-semibold', {
+                className={classNames('relative px-2', {
                   'text-primary': isActive
                 })}
               >
@@ -67,7 +67,7 @@ export default function AsideFilter(props: CaregoryTypeProps) {
                     <polygon points='4 3.5 0 0 0 7' />
                   </svg>
                 )}
-                {categoryItem.name}
+                {categoryItem.name === 'Áo thun' ? 'Thời trang' : categoryItem.name}
               </Link>
             </li>
           )

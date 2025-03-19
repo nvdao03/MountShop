@@ -6,7 +6,7 @@ import productApi from '../../apis/product.api'
 import ProductItem from './components/ProductItem/Product'
 import { ProductListConfig } from '../../types/product.type'
 import { isUndefined, omitBy } from 'lodash'
-import { Link } from 'react-router-dom'
+import { createSearchParams, Link } from 'react-router-dom'
 import path from '../../constants/path'
 import categoryApi from '../../apis/category.api'
 
@@ -79,7 +79,10 @@ export default function ProductList() {
                       <Link
                         to={{
                           pathname: path.productlist,
-                          search: `page=${Number(queryConfig.page) - 1}`
+                          search: createSearchParams({
+                            ...queryConfig,
+                            page: `${Number(queryConfig.page) - 1}`
+                          }).toString()
                         }}
                         className='flex  items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
                       >
@@ -96,7 +99,10 @@ export default function ProductList() {
                           <Link
                             to={{
                               pathname: path.productlist,
-                              search: `page=${pageNumber}`
+                              search: createSearchParams({
+                                ...queryConfig,
+                                page: pageNumber.toString()
+                              }).toString()
                             }}
                             className={`flex items-center justify-center px-4 h-10 leading-tight ${
                               Number(queryConfig.page) === pageNumber
@@ -118,7 +124,10 @@ export default function ProductList() {
                       <Link
                         to={{
                           pathname: path.productlist,
-                          search: `page=${Number(queryConfig.page) + 1}`
+                          search: createSearchParams({
+                            ...queryConfig,
+                            page: `${Number(queryConfig.page) + 1}`
+                          }).toString()
                         }}
                         className='flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100'
                       >
