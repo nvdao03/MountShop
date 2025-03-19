@@ -7,9 +7,7 @@ const URL = 'products'
 const productApi = {
   getProducts: (params?: ProductListConfig) => {
     return http.get<SuccessResponse<ProductList>>(URL, {
-      params: {
-        params
-      }
+      params
     })
   },
   getProductDetail: (id: string) => {
