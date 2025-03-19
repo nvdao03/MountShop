@@ -20,6 +20,7 @@
     "@tanstack/react-query-devtools": "^4.36.1",
     "@types/lodash": "^4.17.16",
     "axios": "^1.8.2",
+    "classnames": "^2.5.1",
     "framer-motion": "^12.5.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.1",

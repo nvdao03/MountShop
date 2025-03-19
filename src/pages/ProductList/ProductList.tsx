@@ -34,7 +34,8 @@ export default function ProductList() {
     queryKey: ['products', queryConfig],
     queryFn: () => {
       return productApi.getProducts(queryConfig as ProductListConfig)
-    }
+    },
+    keepPreviousData: true
   })
 
   console.log(queryParams)
@@ -52,7 +53,7 @@ export default function ProductList() {
             <AsideFilter />
           </div>
           <div className='col-span-10'>
-            <SortProductList />
+            <SortProductList queryConfig={queryConfig} />
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 mt-6'>
               {productListQuery.data &&
                 productListQuery.data.data.data.products.map((product) => (
