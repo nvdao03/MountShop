@@ -20,4 +20,8 @@ export const schema = yup.object({
     .oneOf([yup.ref('password')], 'Mật khẩu không khớp')
 })
 
+export const searchSchema = yup.object({
+  name: yup.string()
+})
+
 export type Schema = yup.InferType<typeof schema>

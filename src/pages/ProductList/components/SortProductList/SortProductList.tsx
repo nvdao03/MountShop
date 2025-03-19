@@ -4,6 +4,9 @@ import { ProductListConfig } from '../../../../types/product.type'
 import classNames from 'classnames'
 import path from '../../../../constants/path'
 import { omit } from 'lodash'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { searchSchema } from '../../../../utils/rules'
 
 export type QueryConfig = {
   [key in keyof ProductListConfig]: string
@@ -21,6 +24,20 @@ export default function SortProductList({ queryConfig }: SortProductListProps) {
   const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
     return sortByValue === sort_by
   }
+
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(searchSchema)
+  })
+
+  const handleSearchSubmit = handleSubmit((data) => {
+    navigate({
+      pathname: path.productlist,
+      search: createSearchParams({
+        ...queryConfig,
+        name: data.name as string
+      }).toString()
+    })
+  })
 
   // Navigate cũng có thể nhận được vào là 1 object. createSearchParams() gửi đi cái params
   const handleSort = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
@@ -122,12 +139,15 @@ export default function SortProductList({ queryConfig }: SortProductListProps) {
       <div className='mt-5'>
         <div className='flex items-center text-[15px] gap-x-4'>
           <p>Tìm kiếm sản phẩm</p>
-          <form className='rounded-md border border-solid border-gray-400 text-[14px] overflow-hidden'>
+          <form
+            className='rounded-md border border-solid border-gray-400 text-[14px] overflow-hidden'
+            onSubmit={handleSearchSubmit}
+          >
             <div className='bg-white rounded-sm p-1 flex'>
               <input
                 placeholder='Tìm kiếm sản phẩm'
                 type='text'
-                name='Search'
+                {...register('name')}
                 className='text-black px-3  border-none outline-none bg-transparent flex-grow'
               />
               <button className='text-slate-400 flex item-center justify-center mr-1 flex-shrink-0 hover:opacity-90'>
