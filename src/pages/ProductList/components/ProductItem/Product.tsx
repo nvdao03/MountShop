@@ -9,12 +9,12 @@ interface ProductPropType {
 
 export default function ProductItem({ product }: ProductPropType) {
   return (
-    <Link to='/' className='h-full'>
+    <Link to={product._id} className='h-full'>
       <div className='bg-white h-full flex flex-col overflow-hidden shadow rounded-md hover:translate-y-[0.05rem] hover:shadow-md duration-300 transition-transform'>
         {/* image */}
         <div className='w-full relative pt-[100%]'>
           <img
-            src={product.images[1]}
+            src={product.image}
             alt={product.name}
             className='absolute top-0 left-0 bg-white w-full h-full object-cover'
           />
@@ -29,7 +29,7 @@ export default function ProductItem({ product }: ProductPropType) {
               <span>₫</span>
               <span>{formatCurrency(product.price_before_discount)}</span>
             </div>
-            <div className='text-orange truncate ml-1'>
+            <div className='text-primary truncate ml-1'>
               <span className='text-xs'>₫</span>
               <span>{formatCurrency(product.price)}</span>
             </div>

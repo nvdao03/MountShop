@@ -9,6 +9,8 @@ import { useContext } from 'react'
 import { AppContext } from './contexts/app.context'
 import path from './constants/path'
 import Home from './pages/Home'
+import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
 
 // Nếu người dùng login thành công thì cho người dùng thao tác tiếp còn ko thì ở nguyên trang login
 function ProtectedRoute() {
@@ -27,7 +29,7 @@ export default function useRouterElements() {
   const routerElement = useRoutes([
     {
       index: true,
-      path: '/',
+      path: path.home,
       element: (
         <MainLayout>
           <Home />
@@ -43,7 +45,31 @@ export default function useRouterElements() {
       )
     },
     {
-      path: '/',
+      path: path.productDetailPageHome,
+      element: (
+        <MainLayout>
+          <ProductDetail />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.productDetailPageProductList,
+      element: (
+        <MainLayout>
+          <ProductDetail />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.cart,
+      element: (
+        <MainLayout>
+          <Cart />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.home,
       element: <ProtectedRoute />,
       children: [
         {
@@ -57,7 +83,7 @@ export default function useRouterElements() {
       ]
     },
     {
-      path: '/',
+      path: path.home,
       element: <RejectedRoute />,
       children: [
         {
