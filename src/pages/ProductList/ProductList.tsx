@@ -8,6 +8,7 @@ import { ProductListConfig } from '../../types/product.type'
 import { isUndefined, omitBy } from 'lodash'
 import { Link } from 'react-router-dom'
 import path from '../../constants/path'
+import categoryApi from '../../apis/category.api'
 
 export type QueryConfig = {
   [key in keyof ProductListConfig]: string
@@ -25,7 +26,8 @@ export default function ProductList() {
       order: queryParams.order,
       price_min: queryParams.price_min,
       price_max: queryParams.price_max,
-      rating_filter: queryParams.rating_filter
+      rating_filter: queryParams.rating_filter,
+      category: queryParams.category
     },
     isUndefined
   )
@@ -38,7 +40,10 @@ export default function ProductList() {
     keepPreviousData: true
   })
 
-  console.log(queryParams)
+  const categoryListQuery = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => categoryApi.getCategories()
+  })
 
   let totalPages = 0
   if (productListQuery.data?.data.data.pagination) {
@@ -50,7 +55,7 @@ export default function ProductList() {
       <div className='container'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-2'>
-            <AsideFilter />
+            <AsideFilter queryConfig={queryConfig} categories={categoryListQuery.data?.data.data || []} />
           </div>
           <div className='col-span-10'>
             <SortProductList queryConfig={queryConfig} />

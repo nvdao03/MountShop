@@ -1,13 +1,32 @@
-import { Link } from 'react-router-dom'
-import path from '../../../../constants/path'
+import { createSearchParams, Link } from 'react-router-dom'
 import Input from '../../../../components/Input'
 import Button from '../../../../components/Button'
+import { ProductListConfig } from '../../../../types/product.type'
+import { Category } from '../../../../types/category.type'
+import classNames from 'classnames'
+import path from '../../../../constants/path'
 
-export default function AsideFilter() {
+export type QueryConfig = {
+  [key in keyof ProductListConfig]: string
+}
+
+interface CaregoryTypeProps {
+  queryConfig: QueryConfig
+  categories: Category[]
+}
+
+export default function AsideFilter(props: CaregoryTypeProps) {
+  const { queryConfig } = props
+
   return (
     <div className='py-4'>
       {/* Row 1 */}
-      <Link to={path.home} className='flex items-center font-bold gap-x-2 uppercase'>
+      <Link
+        to={path.productlist}
+        className={classNames('flex items-center font-bold gap-x-2 uppercase', {
+          'text-primary': !props.queryConfig.category
+        })}
+      >
         <svg viewBox='0 0 12 10' className='w-3 h-4 fill-current'>
           <g fillRule='evenodd' stroke='none' strokeWidth={1}>
             <g transform='translate(-373 -208)'>
@@ -26,24 +45,33 @@ export default function AsideFilter() {
       {/* Row 2 */}
       <div className='bg-gray-300 h-[1px] my-4'></div>
       <ul>
-        <li className='py-2 pl-2'>
-          <Link to={path.home} className='relative px-2 text-primary font-semibold'>
-            <svg viewBox='0 0 4 7' className='fill-primary h-2 w-2 absolute top-1 left-[-10px]'>
-              <polygon points='4 3.5 0 0 0 7' />
-            </svg>
-            Thời trang nam
-          </Link>
-        </li>
-        <li className='py-2 pl-2 text-[15px]'>
-          <Link to={path.home} className='relative px-2'>
-            Áo khoác
-          </Link>
-        </li>
-        <li className='py-2 pl-2 text-[15px]'>
-          <Link to={path.home} className='relative px-2'>
-            Áo Vest và Blazer
-          </Link>
-        </li>
+        {props.categories.map((categoryItem) => {
+          // category: chính là category param url -> là id
+          const isActive = categoryItem._id === props.queryConfig.category
+          return (
+            <li className='py-2 pl-2' key={categoryItem._id}>
+              <Link
+                to={{
+                  pathname: path.productlist,
+                  search: createSearchParams({
+                    ...queryConfig,
+                    category: categoryItem._id
+                  }).toString()
+                }}
+                className={classNames('relative px-2 font-semibold', {
+                  'text-primary': isActive
+                })}
+              >
+                {isActive && (
+                  <svg viewBox='0 0 4 7' className='fill-primary h-2 w-2 absolute top-1 left-[-10px]'>
+                    <polygon points='4 3.5 0 0 0 7' />
+                  </svg>
+                )}
+                {categoryItem.name}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
       <Link to={path.home} className='flex items-center font-bold mt-4 uppercase'>
         <svg
