@@ -69,6 +69,38 @@ export default function useRouterElements() {
       )
     },
     {
+      path: path.cartPageProductList,
+      element: (
+        <MainLayout>
+          <Cart />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.cartPageProfile,
+      element: (
+        <MainLayout>
+          <Cart />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.cartPageProductDetailHome,
+      element: (
+        <MainLayout>
+          <Cart />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.cardPageDetailProductList,
+      element: (
+        <MainLayout>
+          <Cart />
+        </MainLayout>
+      )
+    },
+    {
       path: path.home,
       element: <ProtectedRoute />,
       children: [

@@ -5,6 +5,7 @@ import ProductRating from '../../components/ProductRating'
 import { fomatNumberToSocialStyle, formatCurrency, rateSale } from '../../types/utils.type'
 import CartImg from '../../assets/imgs/cart/card.png'
 import { useEffect, useMemo, useState } from 'react'
+import classNames from 'classnames'
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -86,16 +87,20 @@ export default function ProductDetail() {
                     />
                   </div>
                   <div className='relative mt-4 grid grid-cols-5 gap-1'>
-                    {currentImages.map((img, index) => {
-                      // const isActive = index === 0
+                    {currentImages.map((img) => {
+                      const isActive = img === activeImage
                       return (
                         <div className='relative w-full pt-[100%]' key={img} onClick={() => chooseActive(img)}>
                           <img
                             src={img}
                             alt={product.name}
-                            className='absolute top-0 rounded-lg left-0 w-full cursor-pointer h-full bg-white object-cover'
+                            className={classNames(
+                              'absolute top-0 rounded-lg border border-solid border-gray-200 left-0 w-full cursor-pointer h-full bg-white object-cover',
+                              {
+                                'border border-primary': isActive
+                              }
+                            )}
                           />
-                          {/* {isActive && <div className='rounded-lg absolute inset-0 border-2 border-primary'></div>} */}
                         </div>
                       )
                     })}
