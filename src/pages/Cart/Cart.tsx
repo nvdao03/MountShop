@@ -26,11 +26,15 @@ export default function Cart() {
       navigate('/login')
       return
     }
-    if (isAuthenticated) {
+    if (isAuthenticated && cartList.length > 0) {
       toast.success('Đã đặt hàng thành công')
       setCartList([])
+    } else {
+      toast.warning('Vui lòng chọn sản phẩm')
     }
   }
+
+  console.log(cartList)
 
   const getProductQuantity = (productId: string) => {
     const result = cartList.filter((product) => product._id === productId).length
