@@ -1,7 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { getAccessTokenFromLS } from '../utils/auth'
 import { getUserNameFromLS } from '../utils/user'
 import { Product } from '../types/product.type'
+import { getCardFromLS, saveCardToLS } from '../utils/cart'
 
 interface AppContextInterface {
   isAuthenticated: boolean
@@ -16,7 +17,7 @@ const initialAppContext: AppContextInterface = {
   // Giá trị của nó sẽ được lấy ra và kiểm tra nếu có access_token sẽ trả về true (ép kiểu)
   isAuthenticated: Boolean(getAccessTokenFromLS()),
   userName: getUserNameFromLS(),
-  cartList: [],
+  cartList: getCardFromLS(),
   setIsAuthenticated: () => null,
   setUserName: () => null,
   setCartList: () => null
@@ -29,6 +30,10 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAppContext.isAuthenticated)
   const [userName, setUserName] = useState<string>(initialAppContext.userName)
   const [cartList, setCartList] = useState(initialAppContext.cartList)
+
+  useEffect(() => {
+    saveCardToLS(cartList)
+  }, [cartList])
 
   return (
     <AppContext.Provider
