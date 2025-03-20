@@ -11,6 +11,7 @@ import path from './constants/path'
 import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import NotFound from './pages/NotFound'
 
 // Nếu người dùng login thành công thì cho người dùng thao tác tiếp còn ko thì ở nguyên trang login
 function ProtectedRoute() {
@@ -135,6 +136,14 @@ export default function useRouterElements() {
           )
         }
       ]
+    },
+    {
+      path: '*',
+      element: (
+        <MainLayout>
+          <NotFound />
+        </MainLayout>
+      )
     }
   ])
 
