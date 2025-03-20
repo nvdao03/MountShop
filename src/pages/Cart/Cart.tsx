@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
 import ProductRating from '../../components/ProductRating'
 import { formatCurrency } from '../../types/utils.type'
