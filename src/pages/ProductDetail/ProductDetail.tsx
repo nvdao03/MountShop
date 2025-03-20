@@ -20,7 +20,7 @@ export default function ProductDetail() {
     queryFn: () => productApi.getProductDetail(id as string)
   })
 
-  const [currentIndexImage, setCurrentIndexImage] = useState([0, 5]) // mảng current index có độ dài là 5
+  const [currentIndexImage] = useState([0, 5]) // mảng current index có độ dài là 5
   const product = productDetailData?.data.data
   const [activeImage, setActiveImage] = useState('') // Tạo state quản lý active
   const currentImages = useMemo(() => (product ? product?.images.slice(...currentIndexImage) : []), [product])
