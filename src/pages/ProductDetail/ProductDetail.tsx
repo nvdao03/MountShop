@@ -1,14 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import productApi from '../../apis/product.api'
 import ProductRating from '../../components/ProductRating'
 import { fomatNumberToSocialStyle, formatCurrency, rateSale } from '../../types/utils.type'
 import CartImg from '../../assets/imgs/cart/card.png'
-import { useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
+import { AppContext } from '../../contexts/app.context'
+import { Product } from '../../types/product.type'
+import { toast } from 'react-toastify'
 
 export default function ProductDetail() {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const { setCartList, cartList } = useContext(AppContext)
 
   const { data: productDetailData } = useQuery({
     queryKey: ['product', id],
@@ -29,6 +34,17 @@ export default function ProductDetail() {
   const chooseActive = (img: string) => {
     setActiveImage(img)
   }
+
+  const handleAddCard = (product: Product) => {
+    setCartList((prevState) => [...prevState, product])
+    toast.success('Thêm sản phẩm thành công')
+  }
+
+  const handlePayment = () => {
+    navigate('/cart')
+  }
+
+  console.log(cartList)
 
   if (!product) return null
 
@@ -174,7 +190,10 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   <div className='mt-10'>
-                    <button className='w-full py-3 text-primary flex items-center justify-center gap-x-3 border border-solid border-primary rounded-lg'>
+                    <button
+                      onClick={() => handleAddCard(product)}
+                      className='w-full py-3 text-primary flex items-center justify-center gap-x-3 border border-solid border-primary rounded-lg'
+                    >
                       <span>Thêm vào giỏ hàng</span>
                       <svg xmlns='http://www.w3.org/2000/svg' width='24' height='25' viewBox='0 0 24 25' fill='none'>
                         <path
@@ -183,12 +202,12 @@ export default function ProductDetail() {
                         />
                       </svg>
                     </button>
-                    <Link
-                      to='/cart'
+                    <button
+                      onClick={handlePayment}
                       className='w-full mt-4 py-3 text-white bg-primary flex items-center justify-center gap-x-3 border border-solid border-primary rounded-lg'
                     >
                       Mua ngay
-                    </Link>
+                    </button>
                   </div>
                   <div className='mt-10'>
                     <img src={CartImg} alt='' className='w-full block' />

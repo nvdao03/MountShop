@@ -28,6 +28,10 @@ html *::-webkit-scrollbar-track {
   box-sizing: border-box;
 }
 
+button:hover {
+  opacity: 0.9;
+}
+
 html {
   height: 100%;
   line-height: 1.2;

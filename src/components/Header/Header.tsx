@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useMatch, useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import authApi from '../../apis/auth.api'
 import { useContext } from 'react'
@@ -22,6 +22,18 @@ import Dongho from '../../assets/imgs/category/dongho.png'
 import Thoitrang from '../../assets/imgs/category/quan.png'
 
 export default function Header() {
+  const cartPageProductList = useMatch('/products/cart')
+  const cartPageProfile = useMatch('/profile/cart')
+  const cartPageProductDetailHome = useMatch(':id/cart')
+  const cardPageDetailProductList = useMatch('/products/:id/cart')
+  const cardPage = useMatch('/cart')
+  const isActive =
+    Boolean(cartPageProductList) ||
+    Boolean(cartPageProfile) ||
+    Boolean(cartPageProductDetailHome) ||
+    Boolean(cardPageDetailProductList) ||
+    Boolean(cardPage)
+
   const { setIsAuthenticated, isAuthenticated, setUserName } = useContext(AppContext)
   const navigate = useNavigate()
 
@@ -85,9 +97,11 @@ export default function Header() {
             <button className='bg-[#EAE9FC] p-2 rounded-[50%]'>
               <img src={Notification} alt='' />
             </button>
-            <Link to='./cart' className='bg-[#EAE9FC] p-2 rounded-[50%]'>
-              <img src={Cart} alt='' />
-            </Link>
+            {!isActive && (
+              <Link to='./cart' className='bg-[#EAE9FC] p-2 rounded-[50%]'>
+                <img src={Cart} alt='' />
+              </Link>
+            )}
             {/* Chưa login */}
             {!isAuthenticated && (
               <div className='relative group'>
@@ -115,7 +129,7 @@ export default function Header() {
                   <Link to={path.profile} className='text-sm px-3 py-2 hover:underline'>
                     Tài khoản của tôi
                   </Link>
-                  <Link to={path.cart} className='text-sm px-3 py-2 hover:underline'>
+                  <Link to='#!' className='text-sm px-3 py-2 hover:underline'>
                     Đơn hàng
                   </Link>
                   <Link to={path.home} onClick={handleLogoutMutation} className='text-sm px-3 py-2 hover:underline'>
