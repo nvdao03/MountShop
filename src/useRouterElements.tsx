@@ -30,74 +30,10 @@ export default function useRouterElements() {
   const routerElement = useRoutes([
     {
       index: true,
-      path: path.home,
+      path: '',
       element: (
         <MainLayout>
           <Home />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.productlist,
-      element: (
-        <MainLayout>
-          <ProductList />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.productDetailPageHome,
-      element: (
-        <MainLayout>
-          <ProductDetail />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.productDetailPageProductList,
-      element: (
-        <MainLayout>
-          <ProductDetail />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.cart,
-      element: (
-        <MainLayout>
-          <Cart />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.cartPageProductList,
-      element: (
-        <MainLayout>
-          <Cart />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.cartPageProfile,
-      element: (
-        <MainLayout>
-          <Cart />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.cartPageProductDetailHome,
-      element: (
-        <MainLayout>
-          <Cart />
-        </MainLayout>
-      )
-    },
-    {
-      path: path.cardPageDetailProductList,
-      element: (
-        <MainLayout>
-          <Cart />
         </MainLayout>
       )
     },
@@ -112,11 +48,75 @@ export default function useRouterElements() {
               <Profile />
             </MainLayout>
           )
+        },
+        {
+          path: path.productlist,
+          element: (
+            <MainLayout>
+              <ProductList />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.productDetailPageHome,
+          element: (
+            <MainLayout>
+              <ProductDetail />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.productDetailPageProductList,
+          element: (
+            <MainLayout>
+              <ProductDetail />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cart,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProductList,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProfile,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProductDetailHome,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cardPageDetailProductList,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
         }
       ]
     },
     {
-      path: path.home,
+      path: '',
       element: <RejectedRoute />,
       children: [
         {
@@ -133,6 +133,70 @@ export default function useRouterElements() {
             <RegisterLayout>
               <Register />
             </RegisterLayout>
+          )
+        },
+        {
+          path: path.productlist,
+          element: (
+            <MainLayout>
+              <ProductList />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.productDetailPageHome,
+          element: (
+            <MainLayout>
+              <ProductDetail />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.productDetailPageProductList,
+          element: (
+            <MainLayout>
+              <ProductDetail />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cart,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProductList,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProfile,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cartPageProductDetailHome,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          )
+        },
+        {
+          path: path.cardPageDetailProductList,
+          element: (
+            <MainLayout>
+              <Cart />
+            </MainLayout>
           )
         }
       ]
