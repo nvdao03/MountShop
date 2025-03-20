@@ -125,7 +125,7 @@ export default function AsideFilter(props: CaregoryTypeProps) {
               classNameInput='text-sm p-1 outline-none w-full border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
             />
           </div>
-          <Button className='w-full p-3 uppercase bg-primary rounded-md text-white text-sm hover:opacity-90 flex justify-center items-center'>
+          <Button className='w-full !hover:cursor-not-allowed pointer-events-none p-3 uppercase bg-primary rounded-md text-white text-sm hover:opacity-90 flex justify-center items-center'>
             Áp dụng
           </Button>
         </form>
